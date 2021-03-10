@@ -9,8 +9,11 @@ Irá retornar: [1, 2, 3]
 """
 
 def remove_adjacent(nums):
-    # +++ SUA SOLUÇÃO +++
-    return
+    l = []
+    for i in range(0, len(nums)):
+        if len(l) == 0 or nums[i] != l[-1]:
+            l.append(nums[i])
+    return l
 
 
 # --- Daqui para baixo são apenas códigos auxiliáries de teste. ---
