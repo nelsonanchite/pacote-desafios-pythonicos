@@ -12,8 +12,7 @@ antes de combina-las.
 """
 
 def front_x(words):
-    # +++ SUA SOLUÇÃO +++
-    return
+    return sorted(words, key=lambda word : word if word[0] == 'x' else f'z{word}')
 
 
 # --- Daqui para baixo são apenas códigos auxiliáries de teste. ---
