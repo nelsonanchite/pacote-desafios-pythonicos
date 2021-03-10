@@ -9,8 +9,11 @@ PS: Python não possui o operador ++, porém += funciona.
 """
 
 def match_ends(words):
-    # +++ SUA SOLUÇÃO +++
-    return
+    cont = 0
+    for word in words:
+        if len(word) >= 2 and word[:1] == word[-1:]:
+            cont += 1
+    return cont
 
 
 # --- Daqui para baixo são apenas códigos auxiliáries de teste. ---
