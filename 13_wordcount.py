@@ -52,11 +52,20 @@ e conferindo cada etapa do seu progresso.
 """
 
 import sys
+from collections import Counter
 
+def abre_arquivo(filename):
+    arq = open(filename)
+    words = arq.read().lower().replace('\n', ' ').split(' ')
+    arq.close()
+    return words
 
 # +++ SUA SOLUÇÃO +++
 # Defina as funções print_words(filename) e print_top(filename).
-
+def print_words(filename):
+    texto = abre_arquivo(filename)
+    texto = dict(Counter(texto))
+    print(texto)
 
 # A função abaixo chama print_words() ou print_top() de acordo com os
 # parêtros do programa.
@@ -75,6 +84,7 @@ def main():
         print('unknown option: ' + option)
         sys.exit(1)
 
-
 if __name__ == '__main__':
     main()
+
+
