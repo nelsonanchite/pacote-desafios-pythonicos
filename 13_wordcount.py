@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 13. wordcount
 
@@ -52,7 +53,15 @@ e conferindo cada etapa do seu progresso.
 """
 
 import sys
-from collections import Counter
+
+def retorna_contados(lista):
+    unicos = sorted(list(dict.fromkeys(lista)))
+    l = []
+    for i in unicos:
+        if i != '':
+            t = (i, lista.count(i))
+            l.append(t)
+    return l
 
 def abre_arquivo(filename):
     arq = open(filename)
@@ -60,12 +69,20 @@ def abre_arquivo(filename):
     arq.close()
     return words
 
-# +++ SUA SOLUÇÃO +++
-# Defina as funções print_words(filename) e print_top(filename).
+def imprime(a):
+    for p, c in a:
+        print("{} {}".format(p, c))
+
 def print_words(filename):
     texto = abre_arquivo(filename)
-    texto = dict(Counter(texto))
-    print(texto)
+    lista = retorna_contados(texto)
+    imprime(lista)
+
+def print_top(filename):
+    texto = abre_arquivo(filename)
+    lista = retorna_contados(texto)
+    lista = sorted(lista, reverse=True, key=lambda y:y[1])[:20]
+    imprime(lista)
 
 # A função abaixo chama print_words() ou print_top() de acordo com os
 # parêtros do programa.
