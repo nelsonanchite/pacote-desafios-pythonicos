@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 14. mimic
 
@@ -41,19 +42,35 @@ método que escolhe um elemento aleatório de uma lista não vazia.
 
 import random
 import sys
+from collections import defaultdict
 
+def le_arquivo(filename):
+  arq = open(filename)
+  words = arq.read().lower().split()
+  arq.close()
+  return words
 
 def mimic_dict(filename):
-  """Retorna o dicionario imitador mapeando cada palavra para a lista de
-  palavras subsequentes."""
-    # +++ SUA SOLUÇÃO +++
-  return
+  return cria_dicionario(le_arquivo(filename))
 
+def cria_dicionario(vWords):
+  words = ['']
+  words.extend(vWords)
+  words.extend([''])
+  dd = defaultdict(list)
+  for palavra,subseq in zip(words,words[1:]):
+    dd[palavra].append(subseq)
+  return dd
 
 def print_mimic(mimic_dict, word):
-  """Dado o dicionario imitador e a palavra inicial, imprime texto de 200 palavras."""
-    # +++ SUA SOLUÇÃO +++
-  return
+  words = []
+  words.append(word)
+  nova = ''
+  for n in range(200):
+      nova = random.choice(mimic_dict[nova])
+      words.append(nova)
+
+  return ' '.join(words)
 
 
 # Chama mimic_dict() e print_mimic()
@@ -63,7 +80,8 @@ def main():
     sys.exit(1)
 
   dict = mimic_dict(sys.argv[1])
-  print_mimic(dict, '')
+  resultado = print_mimic(dict, '')
+  print(resultado)
 
 
 if __name__ == '__main__':
